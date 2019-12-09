@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -52,6 +54,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone_number'=> ['required','numeric','regex:/[0-9]{10}/'],
         ]);
     }
 
@@ -63,10 +67,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        DB::table('customer')->insert([
+            [
+            'cid' => $user->id, 
+            'name' => $data['name'], 
+            'address'=>$data['address'],
+            'phone_number'=>$data['phone_number'],
+            'email'=>$data['email']
+        ],
+        ]);
+        return $user;
     }
 }
