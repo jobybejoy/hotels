@@ -1,33 +1,22 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <div class="md:flex container border p-4">
-                        <div class="md:flex-shrink-0">
-                            <img class="rounded-lg md:w-56" src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=448&q=80" alt="Woman paying for a purchase">
-                        </div>
-                        <div class="mt-4 md:mt-0 md:ml-6">
-                            <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">Marketing</div>
-                            <a href="#" class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline">Finding customers for your new business</a>
-                            <p class="mt-2 text-gray-600">Getting a new business off the ground is a lot of hard work. Here are five ideas you can use to find your first customers.</p>
-                        </div>
-                    </div>
-                    You are logged in!
-                </div>
-            </div>
+    <div class="flex justify-center align-items-center">
+        
+        <div class="p-10 w-full h-screen bg-red-200 max-w-4xl">
+        <div class="w-full border-2 border-gray-600 h-12"></div>
+        @foreach ([1,2,5] as $hotel)
+        <div class="w-full bg-gray-500 h-12 mt-5">
+            {{$hotel}}
+        </div>
+        @endforeach
+        @foreach ([3,4,6] as $hotel)
+            <label for=""></label>
+            <input class="bg-white focus:outline-none focus:shadow-outline h-12 mt-5 border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" type="email" placeholder="jane@example.com">
+        @endforeach
+        
         </div>
     </div>
-</div>
+    
+
 @endsection
