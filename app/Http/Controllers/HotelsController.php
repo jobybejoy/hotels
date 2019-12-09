@@ -83,7 +83,7 @@ class HotelsController extends Controller
         session(['hotel_id' => $hotel_id,'room_no' => $room_no]);
         $h_id = session('hotel_id');
         $rno = session('room_no');
-        $next = "/hotel/".$h_id."/breakfasts";
+        $next = "/hotel/".$hotel_id."/breakfasts";
         return redirect($next);
     }
 
@@ -94,7 +94,7 @@ class HotelsController extends Controller
 
     public function setBreakfast($hotel_id,$b_type){
         session(['b_type' => $b_type]);
-        $next = "/hotel/".$h_id."/services";
+        $next = "/hotel/".$hotel_id."/services";
         return redirect($next);
     }
 
