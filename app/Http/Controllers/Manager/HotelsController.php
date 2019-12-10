@@ -16,13 +16,13 @@ class HotelsController extends Controller
     
     public function index()
     {
-        $hotels = DB::select(DB::raw('SELECT * FROM HOTELS'));
+        $hotels = DB::select(DB::raw('SELECT * FROM HOTEL'));
         return view('manager.hotel.hotels')->with('hotels',$hotels);
     }
 
     public function viewHotel($hotel_id)
     {
-        $hotel = DB::select('SELECT * FROM HOTELS WHERE hotel_id=:id',['id'=>$hotel_id]);
+        $hotel = DB::select('SELECT * FROM HOTEL WHERE hotel_id=:id',['id'=>$hotel_id]);
         $rooms = DB::select('SELECT * FROM ROOM WHERE hotel_id=:id',['id'=>$hotel_id]);
         return view('manager.hotel.viewHotel')->with('hotel',$hotel[0])->with('rooms',$rooms);
     }
@@ -32,12 +32,12 @@ class HotelsController extends Controller
     }
 
     public function showEditHotel($hotel_id){
-        $hotel = DB::select('SELECT * FROM HOTELS WHERE hotel_id=:id',['id'=>$hotel_id]);
+        $hotel = DB::select('SELECT * FROM HOTEL WHERE hotel_id=:id',['id'=>$hotel_id]);
         return view('manager.hotel.editHotel')->with('hotel',$hotel[0]);
     }
 
     public function showDeleteHotel($hotel_id){
-        $hotel = DB::select('SELECT * FROM HOTELS WHERE hotel_id=:id',['id'=>$hotel_id]);
+        $hotel = DB::select('SELECT * FROM HOTEL WHERE hotel_id=:id',['id'=>$hotel_id]);
         return view('manager.hotel.deleteHotel')->with('hotel',$hotel[0]);
     }
 
@@ -49,7 +49,7 @@ class HotelsController extends Controller
         'zip'=> 'required|max:255'
         ]);
         $street = $request['street'];   $state = $request['state']; $country = $request['country']; $zip = $request['zip'];
-        $hotels = DB::insert("INSERT INTO HOTELS (street,country,state,zip) VALUES(:street,:country,:state,:zip)",
+        $hotels = DB::insert("INSERT INTO HOTEL (street,country,state,zip) VALUES(:street,:country,:state,:zip)",
         ['street'=>$street,'country'=>$country,'state'=>$state,'zip'=>$zip]);
         $next = "/manager";
         return redirect($next);
@@ -65,14 +65,14 @@ class HotelsController extends Controller
 
         $street = $request['street'];   $state = $request['state']; $country = $request['country']; $zip = $request['zip'];
         
-        $hotels = DB::update("UPDATE HOTELS SET street=:street,country=:country,state=:state,zip=:zip WHERE hotel_id=:hid",
+        $hotels = DB::update("UPDATE HOTEL SET street=:street,country=:country,state=:state,zip=:zip WHERE hotel_id=:hid",
         ['street'=>$street,'country'=>$country,'state'=>$state,'zip'=>$zip,'hid'=>$hotel_id]);
         $next = "/manager";
         return redirect($next);
     }
 
     public function deleteHotel(Request $request,$hotel_id){
-        $hotels = DB::delete("DELETE from HOTELS WHERE hotel_id=:hid",['hid'=>$hotel_id]);
+        $hotels = DB::delete("DELETE from HOTEL WHERE hotel_id=:hid",['hid'=>$hotel_id]);
         $next = "/manager";
         return redirect($next);
     }
