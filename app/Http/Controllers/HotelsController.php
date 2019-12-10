@@ -25,7 +25,7 @@ class HotelsController extends Controller
     public function index()
     {
         $hotels = DB::select(DB::raw('SELECT * FROM HOTEL'));
-        return view('hotels.hotel_List')->with('hotels',$hotels);
+        return view('hotels.hotel_list')->with('hotels',$hotels);
     }
 
     public function getHotel($id){

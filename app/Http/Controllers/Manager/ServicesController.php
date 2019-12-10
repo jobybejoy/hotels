@@ -63,5 +63,21 @@ class ServicesController extends Controller
         return redirect($next);
     }
 
+    public function viewService($hotel_id,$stype){
+        $service = DB::select('SELECT * FROM SERVICE WHERE hotel_id=:id AND stype=:stype',['id'=>$hotel_id,'stype'=>$stype]);
+        $reviews = DB::select('SELECT * FROM SERVICE_REVIEW WHERE hotel_id=:id AND stype=:stype',['id'=>$hotel_id,'stype'=>$stype]);
+        return view('manager.service.ServiceReview')->with('hotel_id',$hotel_id)->with('service',$service[0])->with('reviews',$reviews);
+    }
+
+    public function viewServiceReservation($hotel_id,$stype){
+        $service = DB::select('SELECT * FROM SERVICE WHERE hotel_id=:id AND stype=:stype',['id'=>$hotel_id,'stype'=>$stype]);
+        $reservations = DB::select('
+            SELECT room_no,check_in_date,sprice
+            FROM RRESV_SERVICE RS,SERVICE S
+            WHERE RS.hotel_id=S.hotel_id AND RS.stype=S.stype AND RS.hotel_id=:id AND RS.stype=:stype'
+            ,['id'=>$hotel_id,'stype'=>$stype]);
+        return view('manager.service.ServiceReservation')->with('hotel_id',$hotel_id)->with('service',$service[0])->with('reservations',$reservations);
+    }
+
 
 }

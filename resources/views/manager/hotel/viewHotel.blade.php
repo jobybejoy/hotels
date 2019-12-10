@@ -15,9 +15,9 @@
         Services</a>
         <a href="/breakfasts/hotel/{{$hotel->hotel_id}}" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
         Breakfasts</a>
-        <!-- <a href="/services/hotel/{{$hotel->hotel_id}}/room" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-        Services</a> -->
       </div>
+      <a href="/offers/hotel/{{$hotel->hotel_id}}" class="ml-12 bg-blue-500 hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+        Offers</a>
     </div>
     <div class="w-3/4">
       <div class="flex justify-center align-items-center">
@@ -39,6 +39,7 @@
                   <th class="w-1/6 px-4 py-4">Floor</th>
                   <th class="w-1/6 px-4 py-4">Capacity</th>
                   <th class="w-1/6 px-4 py-4">Actions</th>
+                  <th class="w-1/6      py-4">Others</th>
                   </tr>
               </thead>
               <tbody>
@@ -53,9 +54,14 @@
                     <td class="border px-4 py-2">{{$room->capacity}}</td>
                     <td class="px-4 py-2">
                         <div class="flex">
-                        <!-- <a href="/view/hotel/{{$hotel->hotel_id}}/room/{{$room->room_no}}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded">View</a> -->
-                        <a href="/edit/hotel/{{$hotel->hotel_id}}/room/{{$room->room_no}}" class="ml-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded">Edit</a>
+                        <a href="/edit/hotel/{{$hotel->hotel_id}}/room/{{$room->room_no}}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded">Edit</a>
                         <a href="/delete/hotel/{{$hotel->hotel_id}}/room/{{$room->room_no}}" class="ml-2 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Delete</a>
+                        </div>
+                    </td>
+                    <td class=" py-2">
+                        <div class="flex">
+                        <a href="/review/hotel/{{$hotel->hotel_id}}/room/{{$room->room_no}}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded">Review</a>
+                        <a href="/reservation/hotel/{{$hotel->hotel_id}}/room/{{$room->room_no}}" class="ml-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded">Reservation</a>
                         </div>
                     </td>
                     </tr>

@@ -28,6 +28,22 @@ class RoomsController extends Controller
         return view('manager.room.deleteRoom')->with('room',$room[0])->with('hotel_id',$hotel_id);
     }
 
+    public function viewRoom($hotel_id,$room_no){
+        $rooms = DB::select('SELECT * FROM ROOM WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
+        $reviews = DB::select('SELECT * FROM ROOM_REVIEW WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
+        return view('manager.room.RoomReview')->with('hotel_id',$hotel_id)->with('room',$rooms[0])->with('reviews',$reviews);
+    }
+
+    public function viewRoomReservations($hotel_id,$room_no){
+        $rooms = DB::select('SELECT * FROM ROOM WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
+        $reservations = DB::select('
+            SELECT name,phone_number,email,R.invoice_no,rdate,check_in_date,check_out_date 
+            FROM CUSTOMER C,RESERVATION R,ROOM_RESERVATION RR 
+            WHERE C.cid = R.cid AND R.invoice_no = RR.invoice_no AND hotel_id=:id AND room_no=:rno'
+            ,['id'=>$hotel_id,'rno'=>$room_no]);
+        return view('manager.room.RoomReservation')->with('hotel_id',$hotel_id)->with('room',$rooms[0])->with('reservations',$reservations);
+    }
+
     public function addRoom(Request $request,$hotel_id){
         $validatedData = $request->validate([
         'room_no' => 'required|numeric',

@@ -72,7 +72,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        DB::table('customer')->insert([
+        DB::table('CUSTOMER')->insert([
             [
             'cid' => $user->id, 
             'name' => $data['name'], 
