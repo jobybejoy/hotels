@@ -14,7 +14,7 @@ class RoomsController extends Controller
     }
 
     public function showAddRoom($hotel_id){
-        $hotel = DB::select('SELECT * FROM HOTELS WHERE hotel_id=:id',['id'=>$hotel_id]);
+        $hotel = DB::select('SELECT * FROM HOTEL WHERE hotel_id=:id',['id'=>$hotel_id]);
         return view('manager.room.addRoom')->with('hotel',$hotel[0]);
     }
 

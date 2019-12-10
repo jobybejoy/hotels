@@ -19,6 +19,7 @@
             <input  id="room_no" type="text" name="room_no" value="{{ old('room_no') }}" required autocomplete="room_no" autofocus
             class="@error('room_no') border-red-400 @enderror bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-500" 
             placeholder="102">
+            <p class="text-gray-500 text-xs my-1 ">Note | Room Number cannot be change later</p>
             @error('room_no')
             <div><p class="text-red-400 text-xs italic">{{ $message }}</p></div>  
             @enderror
