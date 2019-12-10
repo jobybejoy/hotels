@@ -10,6 +10,14 @@
       <div class="text-2xl font-normal px-12">{{$hotel->state}}</div>
       <div class="text-2xl font-normal px-12">{{$hotel->country}}</div>
       <div class="text-2xl font-normal px-12">{{$hotel->zip}}</div>
+      <div class="px-12 py-6">
+        <a href="/services/hotel/{{$hotel->hotel_id}}" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+        Services</a>
+        <a href="/breakfasts/hotel/{{$hotel->hotel_id}}" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+        Breakfasts</a>
+        <!-- <a href="/services/hotel/{{$hotel->hotel_id}}/room" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+        Services</a> -->
+      </div>
     </div>
     <div class="w-2/3">
       <div class="flex justify-center align-items-center">

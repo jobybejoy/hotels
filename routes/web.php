@@ -34,7 +34,7 @@ Route::get('/selected/hotel/{hotel_id}/breakfast/{b_type}','HotelsController@set
 
 //Hotel Routes
 Route::get('/manager', 'Manager\HotelsController@index')->name('man');
-Route::get('/view/hotel/{hotel_id}', 'Manager\HotelsController@viewHotel');
+
 Route::get('/add/hotel', 'Manager\HotelsController@showAddHotel');
 Route::post('/add/hotel','Manager\HotelsController@addHotel')->name('add_hotel');
 Route::get('/edit/hotel/{hotel_id}', 'Manager\HotelsController@showEditHotel');
@@ -42,9 +42,23 @@ Route::post('/edit/hotel/{hotel_id}','Manager\HotelsController@editHotel')->name
 Route::get('/delete/hotel/{hotel_id}', 'Manager\HotelsController@showDeleteHotel');
 Route::post('/delete/hotel/{hotel_id}','Manager\HotelsController@deleteHotel')->name('delete_hotel');
 
+Route::get('/rooms/hotel/{hotel_id}', 'Manager\HotelsController@viewHotel');
+//Room Routes
 Route::get('/add/hotel/{hotel_id}/room', 'Manager\RoomsController@showAddRoom');
 Route::post('/add/hotel/{hotel_id}/room','Manager\RoomsController@addRoom')->name('add_room');
 Route::get('/edit/hotel/{hotel_id}/room/{room_no}','Manager\RoomsController@showEditRoom');
 Route::post('/edit/hotel/{hotel_id}/room/{room_no}','Manager\RoomsController@editRoom')->name('edit_room');
 Route::get('/delete/hotel/{hotel_id}/room/{room_no}','Manager\RoomsController@showDeleteRoom');
 Route::post('/delete/hotel/{hotel_id}/room/{room_no}','Manager\RoomsController@deleteRoom')->name('delete_room');
+
+
+//Services Routes
+Route::get('/services/hotel/{hotel_id}', 'Manager\ServicesController@showAllServices');
+Route::get('/add/hotel/{hotel_id}/service','Manager\ServicesController@showAddService');
+Route::post('/add/hotel/{hotel_id}/service','Manager\ServicesController@addService')->name('add_service');
+Route::get('/edit/hotel/{hotel_id}/service/{stype}','Manager\ServicesController@showEditService');
+Route::post('/add/hotel/{hotel_id}/service/{stype}','Manager\ServicesController@editService')->name('edit_service');
+Route::get('/delete/hotel/{hotel_id}/service/{stype}','Manager\ServicesController@showDeleteService');
+Route::post('/delete/hotel/{hotel_id}/service/{stype}','Manager\ServicesController@deleteService')->name('delete_service');
+
+
