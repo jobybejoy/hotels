@@ -24,12 +24,12 @@ class HotelsController extends Controller
      */
     public function index()
     {
-        $hotels = DB::select(DB::raw('SELECT * FROM HOTELS'));
+        $hotels = DB::select(DB::raw('SELECT * FROM HOTEL'));
         return view('hotels.hotel_List')->with('hotels',$hotels);
     }
 
     public function getHotel($id){
-        $hotels = DB::select('SELECT * FROM HOTELS WHERE hotel_id=:id',['id'=>$id]);
+        $hotels = DB::select('SELECT * FROM HOTEL WHERE hotel_id=:id',['id'=>$id]);
         $rooms = DB::select('SELECT * FROM ROOM WHERE hotel_id=:id',['id'=>$id]);
         for($i=0; $i<count($rooms); $i++){
             $rooms[$i]->discount= $this->getRoomDiscountPrice($id,$rooms[$i]->room_no);
@@ -37,11 +37,6 @@ class HotelsController extends Controller
         //View Should have to $room->discount to show discount
         return view('hotels.hotel')->with('hotels',$hotels)->with('rooms',$rooms);
     }
-
-    // public function getRoomByType($hotel_id,$room_type){
-    //     $rooms = DB::select('SELECT * FROM ROOM WHERE hotel_id=:id AND r_type=:type',['id'=>$hotel_id,'type'=>$room_type]);
-    //     return view('hotels.rooms')->with('rooms',$rooms)->with('hotel_id',$hotel_id);
-    // }
 
     function getRoomDiscountPrice($hotel_id,$room_no){
         $discount = DB::select('SELECT * FROM DISCOUNTED_ROOM WHERE hotelid=:id AND `room no`=:rno',['id'=>$hotel_id,'rno'=>$room_no]); 
@@ -67,7 +62,7 @@ class HotelsController extends Controller
 
     //NOT checking the availablity
     public function getRoom($hotel_id,$room_no){
-        // $hotels = DB::select('SELECT * FROM HOTELS WHERE hotel_id=:id',['id'=>$id]);
+        // $hotels = DB::select('SELECT * FROM HOTEL WHERE hotel_id=:id',['id'=>$id]);
         $rooms = DB::select('SELECT * FROM ROOM WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no,]);
         // Checking Reservations
         // $rooms = $this->getRoomsAvailable($hotel_id,$room_no);
