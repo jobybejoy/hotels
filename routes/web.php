@@ -61,4 +61,13 @@ Route::post('/add/hotel/{hotel_id}/service/{stype}','Manager\ServicesController@
 Route::get('/delete/hotel/{hotel_id}/service/{stype}','Manager\ServicesController@showDeleteService');
 Route::post('/delete/hotel/{hotel_id}/service/{stype}','Manager\ServicesController@deleteService')->name('delete_service');
 
+//Breakfasts Routes
+Route::get('/breakfasts/hotel/{hotel_id}', 'Manager\BreakfastsController@showAllBreakfasts');
+Route::get('/add/hotel/{hotel_id}/breakfast','Manager\BreakfastsController@showAddBreakfast');
+Route::post('/add/hotel/{hotel_id}/breakfast','Manager\BreakfastsController@addBreakfast')->name('add_breakfast');
+Route::get('/edit/hotel/{hotel_id}/breakfast/{btype}','Manager\BreakfastsController@showEditBreakfast');
+Route::post('/add/hotel/{hotel_id}/breakfast/{btype}','Manager\BreakfastsController@editBreakfast')->name('edit_breakfast');
+Route::get('/delete/hotel/{hotel_id}/breakfast/{btype}','Manager\BreakfastsController@showDeleteBreakfast');
+Route::post('/delete/hotel/{hotel_id}/breakfast/{btype}','Manager\BreakfastsController@deleteBreakfast')->name('delete_breakfast');
+
 
