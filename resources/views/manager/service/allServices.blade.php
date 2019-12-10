@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex">
-    <div class="w-1/3">
+    <div class="w-1/4">
       <div class="text-4xl font-black px-12 py-6 mt-16">
           Hotel #{{$hotel->hotel_id}}
       </div>
@@ -17,7 +17,7 @@
         Breakfasts</a>
       </div>
     </div>
-    <div class="w-2/3">
+    <div class="w-3/4">
       <div class="flex justify-center align-items-center">
           <div class="text-4xl font-black pr-12 py-6">
           Services
