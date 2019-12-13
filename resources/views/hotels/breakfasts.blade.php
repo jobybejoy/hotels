@@ -7,17 +7,20 @@
       </div>
       <div class="flex p-10">
         @foreach ($breakfasts as $breakfast)
-            <a href='/selected/hotel/{{$hotel_id}}/breakfast/{{$breakfast->BTYPE}}' >
-                  <div class="border-4 border-gray-500 m-2 p-2">
+            <form name="{{$breakfast->btype}}" method="POST" action="{{ route('select_breakfast',['hotel_id'=>$hotel_id,'btype' => $breakfast->btype]) }}">
+            @csrf
+            <!-- <div href='/selected/hotel/{{$hotel_id}}/breakfast/{{$breakfast->btype}}' > -->
+                  <div class="border-4 border-gray-500 m-2 p-2 hover:cursor-pointer" 
+                  onClick="document.forms['{{$breakfast->btype}}'].submit();" >
                       <div class="text-3xl font-black">
-                          {{$breakfast->BTYPE}}
+                          {{$breakfast->btype}}
                       </div>
                       <div class="text-base">
-                          {{$breakfast->BPRICE}}  <br />
-                          {{$breakfast->DESCRIPTION}}  <br />
+                          {{$breakfast->bprice}}  <br />
+                          {{$breakfast->description}}  <br />
                       </div>
                   </div>
-            </a>
+            </form>
           @endforeach
       </div>
     @else

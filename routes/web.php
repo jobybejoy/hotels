@@ -27,7 +27,13 @@ Route::get('/hotel/{hotel_id}/breakfasts','HotelsController@getBreakfasts');
 Route::get('/hotel/{hotel_id}/services','HotelsController@getServices');
 
 Route::get('/selected/hotel/{hotel_id}/room/{room_no}','HotelsController@setRoom');
-Route::get('/selected/hotel/{hotel_id}/breakfast/{b_type}','HotelsController@setBreakfast');
+Route::post('/selected/hotel/{hotel_id}/breakfast/{btype}','HotelsController@setBreakfast')->name('select_breakfast');
+Route::post('/selected/hotel/{hotel_id}/service/{stype}','HotelsController@setService')->name('select_service');
+
+Route::get('/show/confirmation','HotelsController@showConfirmation');
+Route::post('/checkout/', function(){   return redirect()->route('pay_view');  })->name('checkout');
+Route::get('/payment/card','HotelsController@showPayment')->name('pay_view');
+Route::post('/payment/card','HotelsController@pay')->name('payment');
 
 
 //Mananger Routes

@@ -23,7 +23,7 @@ class HotelsController extends Controller
     public function viewHotel($hotel_id)
     {
         $hotel = DB::select('SELECT * FROM HOTEL WHERE hotel_id=:id',['id'=>$hotel_id]);
-        $rooms = DB::select('SELECT * FROM ROOM WHERE hotel_id=:id',['id'=>$hotel_id]);
+        $rooms = DB::select('SELECT * FROM ROOMS WHERE hotel_id=:id',['id'=>$hotel_id]);
         return view('manager.hotel.viewHotel')->with('hotel',$hotel[0])->with('rooms',$rooms);
     }
 

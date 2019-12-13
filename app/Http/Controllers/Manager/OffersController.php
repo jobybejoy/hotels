@@ -22,7 +22,7 @@ class OffersController extends Controller
     }
 
     public function showAddOffers($hotel_id){
-        $rooms = DB::select('SELECT * FROM ROOM WHERE hotel_id=:id',['id'=>$hotel_id]);
+        $rooms = DB::select('SELECT * FROM ROOMS WHERE hotel_id=:id',['id'=>$hotel_id]);
         return view('manager.offer.addOffer')->with('hotel_id',$hotel_id)->with('rooms',$rooms);
     }
 

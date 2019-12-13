@@ -19,23 +19,23 @@ class RoomsController extends Controller
     }
 
     public function showEditRoom($hotel_id,$room_no){
-        $room = DB::select('SELECT * FROM ROOM WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
+        $room = DB::select('SELECT * FROM ROOMS WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
         return view('manager.room.editRoom')->with('room',$room[0])->with('hotel_id',$hotel_id);
     }
 
     public function showDeleteRoom($hotel_id,$room_no){
-        $room = DB::select('SELECT * FROM ROOM WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
+        $room = DB::select('SELECT * FROM ROOMS WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
         return view('manager.room.deleteRoom')->with('room',$room[0])->with('hotel_id',$hotel_id);
     }
 
     public function viewRoom($hotel_id,$room_no){
-        $rooms = DB::select('SELECT * FROM ROOM WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
-        $reviews = DB::select('SELECT * FROM ROOM_REVIEW WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
+        $rooms = DB::select('SELECT * FROM ROOMS WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
+        $reviews = DB::select('SELECT * FROM ROOMS_REVIEW WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
         return view('manager.room.RoomReview')->with('hotel_id',$hotel_id)->with('room',$rooms[0])->with('reviews',$reviews);
     }
 
     public function viewRoomReservations($hotel_id,$room_no){
-        $rooms = DB::select('SELECT * FROM ROOM WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
+        $rooms = DB::select('SELECT * FROM ROOMS WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
         $reservations = DB::select('
             SELECT name,phone_number,email,R.invoice_no,rdate,check_in_date,check_out_date 
             FROM CUSTOMER C,RESERVATION R,ROOM_RESERVATION RR 
@@ -60,7 +60,7 @@ class RoomsController extends Controller
         $capacity = $request['capacity'];
         $description = $request['description'];
 
-        $hotels = DB::insert("INSERT INTO ROOM (hotel_id,room_no,r_type,price,description,floor,capacity) VALUES(:hotel_id,:room_no,:r_type,:price,:description,:floor,:capacity)",
+        $hotels = DB::insert("INSERT INTO ROOMS (hotel_id,room_no,r_type,price,description,floor,capacity) VALUES(:hotel_id,:room_no,:r_type,:price,:description,:floor,:capacity)",
         ['hotel_id'=>$hotel_id,'room_no'=>$room_no,'r_type'=>$r_type,'price'=>$price,'description'=>$description,'floor'=>$floor,'capacity'=>$capacity]);
         $next = "view/hotel/".$hotel_id;
         return redirect($next);
@@ -81,7 +81,7 @@ class RoomsController extends Controller
         $capacity = $request['capacity'];
         $description = $request['description'];
 
-        $hotels = DB::insert("UPDATE ROOM SET r_type=:r_type,price=:price,description=:description,floor=:floor,capacity=:capacity
+        $hotels = DB::insert("UPDATE ROOMS SET r_type=:r_type,price=:price,description=:description,floor=:floor,capacity=:capacity
         WHERE hotel_id=:hotel_id AND room_no=:room_no",
         ['hotel_id'=>$hotel_id,'room_no'=>$room_no,'r_type'=>$r_type,'price'=>$price,'description'=>$description,'floor'=>$floor,'capacity'=>$capacity]);
         $next = "view/hotel/".$hotel_id;
@@ -89,7 +89,7 @@ class RoomsController extends Controller
     }
 
     public function deleteRoom(Request $request,$hotel_id,$room_no){
-        $hotels = DB::delete("DELETE from ROOM WHERE hotel_id=:hid AND room_no=:rno",['hid'=>$hotel_id,'rno'=>$room_no]);
+        $hotels = DB::delete("DELETE from ROOMS WHERE hotel_id=:hid AND room_no=:rno",['hid'=>$hotel_id,'rno'=>$room_no]);
         $next = "view/hotel/".$hotel_id;
         return redirect($next);
     }
