@@ -34,9 +34,9 @@
                     <tr>
                     <td class="border px-4 py-2">{{$reservation->room_no}}</td>
                     <td class="border px-4 py-2">{{$reservation->check_in_date}}</td>
-                    <td class="border px-4 py-2">{{$reservation->nooforders}}</td>
+                    <td class="border px-4 py-2">{{$reservation->no_of_orders}}</td>
                     <td class="border px-4 py-2">{{$reservation->bprice}}</td>
-                    <td class="border px-4 py-2"><span class="font-semibold">{{$reservation->bprice*$reservation->nooforders}}</span></td>
+                    <td class="border px-4 py-2"><span class="font-semibold">{{$reservation->bprice*$reservation->no_of_orders}}</span></td>
                     </tr>
                 @endforeach
               </tbody>

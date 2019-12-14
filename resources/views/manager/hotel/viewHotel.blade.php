@@ -29,17 +29,17 @@
       <div class="flex justify-center align-items-center">
           <div class="flex p-2">
           @if(!empty($rooms))
-          <table class="table-fixed">
+          <table class="table-auto">
               <thead>
                   <tr>
-                  <th class="w-1/6 px-2 py-4">Room No.</th>
-                  <th class="w-1/2 px-4 py-4">Type</th>
-                  <th class="w-1/6 px-4 py-4">Price</th>
-                  <th class="w-1/6 px-4 py-4">Description</th>
-                  <th class="w-1/6 px-4 py-4">Floor</th>
-                  <th class="w-1/6 px-4 py-4">Capacity</th>
-                  <th class="w-1/6 px-4 py-4">Actions</th>
-                  <th class="w-1/6      py-4">Others</th>
+                  <th class="w-1/12 px-2 py-4">Room No.</th>
+                  <th class="w-2/12 px-4 py-4">Type</th>
+                  <th class="w-1/12 px-4 py-4">Price</th>
+                  <th class="w-6/12 px-4 py-4">Description</th>
+                  <th class="w-1/12 px-4 py-4">Floor</th>
+                  <th class="w-1/12 px-4 py-4">Capacity</th>
+                  <th class="w-1/12 px-4 py-4">Actions</th>
+                  <th class="w-1/12      py-4">Others</th>
                   </tr>
               </thead>
               <tbody>

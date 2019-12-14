@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HotelsController@index')->name('home');
+// Route::get('/hotels', 'HotelsController@index')->name('home');
+
+Route::post('/find/hotels', 'HotelsController@searchHotels')->name('search_hotel');
 // Route::get('/hotels', 'HotelsController@index')->name('hotels_list');
 
 Route::get('/hotel/{id}','HotelsController@getHotel');
@@ -26,15 +28,19 @@ Route::get('/hotel/{hotel_id}/room/{room_no}','HotelsController@getRoom');
 Route::get('/hotel/{hotel_id}/breakfasts','HotelsController@getBreakfasts');
 Route::get('/hotel/{hotel_id}/services','HotelsController@getServices');
 
-Route::get('/selected/hotel/{hotel_id}/room/{room_no}','HotelsController@setRoom');
+Route::post('/selected/hotel/{hotel_id}/room/{room_no}','HotelsController@setRoom')->name('select_room');
 Route::post('/selected/hotel/{hotel_id}/breakfast/{btype}','HotelsController@setBreakfast')->name('select_breakfast');
 Route::post('/selected/hotel/{hotel_id}/service/{stype}','HotelsController@setService')->name('select_service');
 
 Route::get('/show/confirmation','HotelsController@showConfirmation');
-Route::post('/checkout/', function(){   return redirect()->route('pay_view');  })->name('checkout');
+Route::post('/checkout', function(){   return redirect()->route('pay_view');  })->name('checkout');
 Route::get('/payment/card','HotelsController@showPayment')->name('pay_view');
 Route::post('/payment/card','HotelsController@pay')->name('payment');
 
+Route::get('/my/reservations','HotelsController@showUserReservations');
+Route::get('/booking/{invoice_no}','HotelsController@getReservation')->name('get_reservation');
+
+Route::get('/my/reviews','HotelsController@showUserReviews');
 
 //Mananger Routes
 

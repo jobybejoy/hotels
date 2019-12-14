@@ -16,7 +16,7 @@ class OffersController extends Controller
     public function showAllOffers($hotel_id){
         $hotel = DB::select('SELECT * FROM HOTEL WHERE hotel_id=:id',['id'=>$hotel_id]);
         $offers = DB::select('
-        SELECT r.room_no,discount,start_date,end_date,r_type,price FROM DISCOUNT_ROOM dr,ROOM r WHERE dr.hotel_id=r.hotel_id AND dr.room_no=r.room_no AND dr.hotel_id=:id ',
+        SELECT r.room_no,discount,start_date,end_date,r_type,price FROM DISCOUNT_ROOM dr,ROOMS r WHERE dr.hotel_id=r.hotel_id AND dr.room_no=r.room_no AND dr.hotel_id=:id ',
         ['id'=>$hotel_id]);
         return view('manager.offer.allOffers')->with('hotel',$hotel[0])->with('offers',$offers);
     }

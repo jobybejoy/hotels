@@ -30,7 +30,7 @@ class RoomsController extends Controller
 
     public function viewRoom($hotel_id,$room_no){
         $rooms = DB::select('SELECT * FROM ROOMS WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
-        $reviews = DB::select('SELECT * FROM ROOMS_REVIEW WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
+        $reviews = DB::select('SELECT * FROM ROOM_REVIEW WHERE hotel_id=:id AND room_no=:rno',['id'=>$hotel_id,'rno'=>$room_no]);
         return view('manager.room.RoomReview')->with('hotel_id',$hotel_id)->with('room',$rooms[0])->with('reviews',$reviews);
     }
 

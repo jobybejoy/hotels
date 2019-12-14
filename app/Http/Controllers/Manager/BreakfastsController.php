@@ -21,7 +21,7 @@ class BreakfastsController extends Controller
 
     public function viewBreakfast($hotel_id,$btype){
         $breakfast = DB::select('SELECT * FROM BREAKFAST WHERE hotel_id=:id AND btype=:btype',['id'=>$hotel_id,'btype'=>$btype]);
-        $reviews = DB::select('SELECT * FROM BREAKFAST_REVIEW WHERE hotel_id=:id AND btype=:btype',['id'=>$hotel_id,'btype'=>$btype]);
+        $reviews = DB::select('SELECT * FROM BREAKFAST_REVIEWS WHERE hotel_id=:id AND btype=:btype',['id'=>$hotel_id,'btype'=>$btype]);
         return view('manager.breakfast.BreakfastReview')->with('hotel_id',$hotel_id)->with('breakfast',$breakfast[0])->with('reviews',$reviews);
     }
 
@@ -74,8 +74,8 @@ class BreakfastsController extends Controller
     public function viewBreakfastReservation($hotel_id,$btype){
         $breakfast = DB::select('SELECT * FROM BREAKFAST WHERE hotel_id=:id AND btype=:btype',['id'=>$hotel_id,'btype'=>$btype]);
         $reservations = DB::select('
-            SELECT room_no,check_in_date,nooforders,bprice 
-            FROM rresv_breakfast rb,breakfast b 
+            SELECT room_no,check_in_date,no_of_orders,bprice 
+            FROM resv_breakfast rb,breakfast b 
             WHERE rb.hotel_id=b.hotel_id AND rb.btype=b.btype AND rb.hotel_id=:id AND rb.btype=:btype'
             ,['id'=>$hotel_id,'btype'=>$btype]);
         return view('manager.breakfast.BreakfastReservation')->with('hotel_id',$hotel_id)->with('breakfast',$breakfast[0])->with('reservations',$reservations);
